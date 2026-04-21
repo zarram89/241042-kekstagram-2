@@ -1,5 +1,9 @@
 import { getPictures } from './data/pictures.js';
+import { renderPictures } from './render/gallery.js';
 
-console.log(
-  getPictures()
-);
+const container = document.querySelector('.pictures');
+const template = document.querySelector('#picture')?.content?.querySelector('.picture');
+
+if (container && template) {
+  renderPictures(getPictures(), container, template);
+}

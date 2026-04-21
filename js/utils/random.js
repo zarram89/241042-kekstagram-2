@@ -4,11 +4,11 @@ const getRandomInteger = (min, max) => {
   }
 
   if (typeof min !== 'number' || typeof max !== 'number') {
-    throw new TypeError('min and max must be numbers');
+    throw new TypeError('Min and max must be numbers');
   }
 
   if (!Number.isFinite(min) || !Number.isFinite(max)) {
-    throw new TypeError('min and max must be finite numbers');
+    throw new TypeError('Min and max must be finite numbers');
   }
 
   const lower = Math.ceil(Math.min(min, max));
@@ -23,7 +23,7 @@ const getRandomInteger = (min, max) => {
 
 const getRandomItem = (items) => {
   if (!Array.isArray(items) || items.length === 0) {
-    throw new TypeError('items must be a non-empty array');
+    throw new TypeError('Items must be a non-empty array');
   }
 
   return items[getRandomInteger(0, items.length - 1)];
