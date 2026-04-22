@@ -1,12 +1,6 @@
-import {
-  MESSAGES,
-  NAMES,
-} from '../constants/mock.js';
-import { CONFIG } from '../constants/config.js';
-import {
-  getRandomInteger,
-  getRandomItem,
-} from '../utils/random.js';
+import { MESSAGES, NAMES } from './const/data.js';
+import { CONFIG } from './const/config.js';
+import { getRandomInteger, getRandomItem } from '../utils/random.js';
 import { createIdGenerator, } from '../utils/id.js';
 
 const commentIdGenerator = createIdGenerator();

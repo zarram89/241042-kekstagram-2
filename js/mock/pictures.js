@@ -1,14 +1,6 @@
-import {
-  DESCRIPTIONS,
-  PICTURES_COUNT,
-} from '../constants/mock.js';
-import {
-  CONFIG
-} from '../constants/config.js';
-import {
-  getRandomInteger,
-  getRandomItem,
-} from '../utils/random.js';
+import { DESCRIPTIONS, PICTURES_COUNT } from './const/data.js';
+import { CONFIG } from './const/config.js';
+import { getRandomInteger, getRandomItem } from '../utils/random.js';
 import { createIdGenerator } from '../utils/id.js';
 import { getComments } from './comments.js';
 
