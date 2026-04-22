@@ -21,10 +21,6 @@ const DESCRIPTIONS = [
 ];
 const NAMES = ['Николай', 'Аким', 'Ким', 'Харитон', 'Тимур', 'Степан'];
 const PICTURES_COUNT = 25;
+const COMMENTS_PER_PORTION = 5;
 
-export {
-  MESSAGES,
-  DESCRIPTIONS,
-  NAMES,
-  PICTURES_COUNT,
-};
+export { MESSAGES, DESCRIPTIONS, NAMES, PICTURES_COUNT, COMMENTS_PER_PORTION };

@@ -1,5 +1,5 @@
-import { renderThumbnails } from './thumbnail.js';
-import { showBigPicture } from './big-picture.js';
+import { renderThumbnails } from './thumbnails.js';
+import { showBigPicture } from './big-picture/meta.js';
 
 const renderGallery = (pictures, container, template) => {
   const picturesMap = new Map(pictures.map((item) => [item.id, item]));
