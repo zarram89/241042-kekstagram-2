@@ -1,0 +1,44 @@
+import { isEscapeKey } from '../../utils/common.js';
+
+const body = document.body;
+const form = document.querySelector('.img-upload__form');
+const overlay = form.querySelector('.img-upload__overlay');
+const cancelButton = form.querySelector('.img-upload__cancel');
+const fileField = form.querySelector('.img-upload__input');
+
+let onCloseCallback = null;
+
+const showModal = () => {
+  overlay.classList.remove('hidden');
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentKeydown);
+};
+
+const hideModal = () => {
+  form.reset();
+  fileField.value = '';
+
+  overlay.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentKeydown);
+
+  if (onCloseCallback) {
+    onCloseCallback();
+  }
+};
+
+const initModal = (cb) => {
+  onCloseCallback = cb;
+
+  fileField.addEventListener('change', showModal);
+  cancelButton.addEventListener('click', hideModal);
+};
+
+function onDocumentKeydown(evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    hideModal();
+  }
+}
+
+export { initModal, hideModal };

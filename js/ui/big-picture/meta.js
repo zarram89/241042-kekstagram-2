@@ -20,7 +20,7 @@ const renderMeta = ({ url, likes, description }) => {
   caption.textContent = description;
 };
 
-const open = (data) => {
+const showBigPicture = (data) => {
   if (!data || isOpen) {
     return;
   }
@@ -37,7 +37,7 @@ const open = (data) => {
   renderComments();
 };
 
-const close = () => {
+const hideBigPicture = () => {
   if (!isOpen) {
     return;
   }
@@ -53,12 +53,12 @@ const close = () => {
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    close();
+    hideBigPicture();
   }
 }
 
 function onCancelButtonClick() {
-  close();
+  hideBigPicture();
 }
 
 const initBigPicture = () => {
@@ -70,8 +70,4 @@ const initBigPicture = () => {
   cancelButton.addEventListener('click', onCancelButtonClick);
 };
 
-export {
-  initBigPicture,
-  open as showBigPicture,
-  close as hideBigPicture,
-};
+export { initBigPicture, showBigPicture, hideBigPicture };
