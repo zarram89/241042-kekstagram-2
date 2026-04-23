@@ -1,4 +1,6 @@
 import { isEscapeKey } from '../../utils/common.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effect.js';
 
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
@@ -17,6 +19,8 @@ const showModal = () => {
 const hideModal = () => {
   form.reset();
   fileField.value = '';
+  resetScale();
+  resetEffects();
 
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
