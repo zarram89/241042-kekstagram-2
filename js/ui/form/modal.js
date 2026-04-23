@@ -6,6 +6,8 @@ const body = document.body;
 const form = document.querySelector('.img-upload__form');
 const overlay = form.querySelector('.img-upload__overlay');
 const cancelButton = form.querySelector('.img-upload__cancel');
+const hashtagField = form.querySelector('.text__hashtags');
+const commentField = form.querySelector('.text__description');
 const fileField = form.querySelector('.img-upload__input');
 
 let onCloseCallback = null;
@@ -38,8 +40,12 @@ const initModal = (cb) => {
   cancelButton.addEventListener('click', hideModal);
 };
 
+const isTextFieldFocused = () =>
+  document.activeElement === hashtagField ||
+  document.activeElement === commentField;
+
 function onDocumentKeydown(evt) {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && !isTextFieldFocused()) {
     evt.preventDefault();
     hideModal();
   }
