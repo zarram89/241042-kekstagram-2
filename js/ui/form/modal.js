@@ -44,8 +44,11 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
   document.activeElement === commentField;
 
+const isMessageShown = () =>
+  Boolean(document.querySelector('.error, .success'));
+
 function onDocumentKeydown(evt) {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !isMessageShown()) {
     evt.preventDefault();
     hideModal();
   }
