@@ -12,7 +12,6 @@ const initForm = () => {
     resetValidation();
   });
 
-
   initScale();
   initEffects();
   initSubmit({
