@@ -1,21 +1,39 @@
 import { renderThumbnails } from './thumbnails.js';
 import { showBigPicture } from './big-picture/meta.js';
 
-const renderGallery = (pictures, container, template) => {
-  const picturesMap = new Map(pictures.map((item) => [item.id, item]));
+const initGallery = ({ container, template }) => {
+  let currentPictures = [];
 
-  container.addEventListener('click', (evt) => {
-    const thumbnail = evt.target.closest('[data-thumbnail-id]');
-    if (!thumbnail) {
-      return;
-    }
+  const render = (pictures) => {
+    currentPictures = pictures;
+    renderThumbnails(currentPictures, container, template);
+  };
 
-    evt.preventDefault();
-    const picture = picturesMap.get(Number(thumbnail.dataset.thumbnailId));
-    showBigPicture(picture);
-  });
+  const initEvents = () => {
+    container.addEventListener('click', (evt) => {
+      const thumbnail = evt.target.closest('[data-thumbnail-id]');
+      if (!thumbnail) {
+        return;
+      }
 
-  renderThumbnails(pictures, container, template);
+      evt.preventDefault();
+
+      const id = Number(thumbnail.dataset.thumbnailId);
+
+      const picture = currentPictures.find((item) => item.id === id);
+      if (!picture) {
+        return;
+      }
+
+      showBigPicture(picture);
+    });
+  };
+
+  initEvents();
+
+  return {
+    render,
+  };
 };
 
-export { renderGallery };
+export { initGallery };

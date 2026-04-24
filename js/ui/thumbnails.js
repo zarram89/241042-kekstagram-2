@@ -17,6 +17,8 @@ const renderThumbnails = (pictures, container, template) => {
     throw new TypeError('Pictures must be an array');
   }
 
+  container.querySelectorAll('.picture').forEach((element) => element.remove());
+
   const fragment = document.createDocumentFragment();
 
   pictures.forEach((picture) => {

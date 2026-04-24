@@ -29,15 +29,15 @@ const load = async (route, method = Method.GET, body = null) => {
       throw new Error();
     }
 
-    return method === Method.GET ? response.json() : response;
+    return method === Method.GET ? await response.json() : await response;
 
   } catch {
     throw new Error(ErrorText[method]);
   }
 };
 
-const getData = () => load(Route.GET_DATA);
+const getData = async () => await load(Route.GET_DATA);
 
-const sendData = (body) => load(Route.SEND_DATA, Method.POST, body);
+const sendData = async (body) => await load(Route.SEND_DATA, Method.POST, body);
 
 export { getData, sendData };
