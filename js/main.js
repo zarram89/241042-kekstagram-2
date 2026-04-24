@@ -6,6 +6,7 @@ import { initForm } from './ui/form/index.js';
 import { showAlert } from './ui/messages.js';
 import { initFilters } from './ui/form/filter.js';
 import { debounce } from './utils/common.js';
+import { initUploadImage } from './ui/form/upload-image.js';
 
 const dom = {
   container: document.querySelector('.pictures'),
@@ -13,6 +14,7 @@ const dom = {
   filters: document.querySelector('.img-filters'),
 };
 
+initUploadImage();
 initBigPicture();
 initCommentsLoader();
 initForm();

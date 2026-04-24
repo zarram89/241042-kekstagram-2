@@ -15,6 +15,8 @@ const EFFECTS_MAP = Object.fromEntries(
 
 let chosenEffect = DEFAULT_EFFECT;
 
+let currentEffectClass = null;
+
 const imageElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
 const sliderElement = document.querySelector('.effect-level__slider');
@@ -31,15 +33,23 @@ const hideSlider = () => {
   sliderContainerElement.classList.add('hidden');
 };
 
-const removeEffectClasses = () => {
-  EFFECTS.forEach((effect) => {
-    imageElement.classList.remove(`effects__preview--${effect.name}`);
-  });
+const removeCurrentEffectClass = () => {
+  if (currentEffectClass) {
+    imageElement.classList.remove(currentEffectClass);
+    currentEffectClass = null;
+  }
 };
 
 const applyEffectClass = () => {
-  removeEffectClasses();
-  imageElement.classList.add(`effects__preview--${chosenEffect.name}`);
+  removeCurrentEffectClass();
+
+  if (isDefault()) {
+    return;
+  }
+
+  const newClass = `effects__preview--${chosenEffect.name}`;
+  imageElement.classList.add(newClass);
+  currentEffectClass = newClass;
 };
 
 const updateSlider = () => {
@@ -83,7 +93,8 @@ const onSliderUpdate = () => {
 const resetEffects = () => {
   chosenEffect = DEFAULT_EFFECT;
 
-  removeEffectClasses();
+  removeCurrentEffectClass();
+
   imageElement.style.filter = 'none';
   effectLevelElement.value = '';
 

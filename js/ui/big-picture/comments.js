@@ -1,4 +1,4 @@
-import { COMMENTS_PER_PORTION } from '../../mock/const/data';
+const COMMENTS_PER_PORTION = 5;
 
 const commentsList = document.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
