@@ -38,33 +38,45 @@ const initFilters = ({ container, pictures, onChange }) => {
     throw new Error('Filter container not found');
   }
 
+  const filterFormElement = container.querySelector('.img-filters__form');
+  const filterButtonElements = filterFormElement ?
+    [...filterFormElement.querySelectorAll('.img-filters__button')] :
+    [];
+
+  if (!filterFormElement || filterButtonElements.length === 0) {
+    throw new Error('Filter buttons not found');
+  }
+
   let currentFilter = Filter.DEFAULT;
+  let activeButtonElement = filterFormElement.querySelector('.img-filters__button--active');
 
   container.classList.remove('img-filters--inactive');
 
-  container.addEventListener('click', (evt) => {
-    const button = evt.target.closest('.img-filters__button');
-    if (!button) {
-      return;
-    }
+  filterButtonElements.forEach((buttonElement) => {
+    buttonElement.addEventListener('click', (evt) => {
+      evt.preventDefault();
 
-    const newFilter = button.id;
+      const button = evt.currentTarget;
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
 
-    if (newFilter === currentFilter) {
-      return;
-    }
+      const newFilter = button.id;
+      if (newFilter === currentFilter) {
+        return;
+      }
 
-    const activeButton = container.querySelector('.img-filters__button--active');
-    if (activeButton) {
-      activeButton.classList.remove('img-filters__button--active');
-    }
+      if (activeButtonElement) {
+        activeButtonElement.classList.remove('img-filters__button--active');
+      }
 
-    button.classList.add('img-filters__button--active');
+      button.classList.add('img-filters__button--active');
+      activeButtonElement = button;
+      currentFilter = newFilter;
 
-    currentFilter = newFilter;
-
-    const filtered = filterPictures(pictures, currentFilter);
-    onChange(filtered);
+      const filtered = filterPictures(pictures, currentFilter);
+      onChange(filtered);
+    });
   });
 };
 

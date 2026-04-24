@@ -13,6 +13,8 @@ const fileField = form.querySelector('.img-upload__input');
 let onCloseCallback = null;
 
 const showModal = () => {
+  hashtagField.disabled = false;
+  commentField.disabled = false;
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
